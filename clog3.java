@@ -317,7 +317,7 @@ try {
 
 				try {
 					// File file = new File
-					// ("C:\\Users\\zzislin\\Desktop\\Changelogs");
+					// ("*input file path here*");
 
 					PrintWriter writer = new PrintWriter("*input file path here*" + "clog"
 							+ textField.getText() + textField_1.getText() + textField_9.getText() + ".txt", "UTF-8");
