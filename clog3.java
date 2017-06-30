@@ -12,6 +12,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
@@ -85,6 +86,8 @@ public class clog3 extends JFrame {
 	private JLabel lblVersionNumber;
 	private JTextField textField_9;
 	private JButton btnNewButton;
+	private JLabel lblAuthor;
+	private JTextField textField_10;
 
 	public static void main(String[] args) {
 
@@ -93,6 +96,7 @@ public class clog3 extends JFrame {
 				try {
 					clog3 frame = new clog3();
 					frame.setVisible(true);
+					frame.setTitle("Changelog Creator");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -108,23 +112,49 @@ public class clog3 extends JFrame {
 		version = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 793);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 		setContentPane(contentPane);
-		contentPane.setLayout(new FormLayout(
-				new ColumnSpec[] { FormSpecs.RELATED_GAP_COLSPEC, FormSpecs.DEFAULT_COLSPEC,
-						FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("default:grow"), FormSpecs.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("default:grow"), },
-				new RowSpec[] { FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, }));
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),},
+			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 
 		JLabel lblNewLabel = new JLabel("CHANGE LOG EDITOR ");
 		lblNewLabel.setForeground(Color.RED);
@@ -134,7 +164,7 @@ public class clog3 extends JFrame {
 		label = new JLabel("");
 		contentPane.add(label, "6, 4");
 
-		JLabel lblStartDate = new JLabel("Start Date:");
+		JLabel lblStartDate = new JLabel("Start Date: ");
 		lblStartDate.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblStartDate, "2, 6, right, default");
 
@@ -164,7 +194,7 @@ public class clog3 extends JFrame {
 		rdbtnNo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(rdbtnNo, "6, 10");
 
-		lblBudgetImplications = new JLabel("Budget Implication(s):");
+		lblBudgetImplications = new JLabel("Budget Implication(s): ");
 		lblBudgetImplications.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblBudgetImplications.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblBudgetImplications, "2, 12");
@@ -224,7 +254,7 @@ public class clog3 extends JFrame {
 		contentPane.add(textField_7, "4, 22, 3, 2, fill, default");
 		textField_7.setColumns(10);
 
-		lblNotescommentsotherInfo = new JLabel("Notes/Comments/Other Info:");
+		lblNotescommentsotherInfo = new JLabel("Notes: ");
 		lblNotescommentsotherInfo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNotescommentsotherInfo.setHorizontalAlignment(SwingConstants.RIGHT);
 		contentPane.add(lblNotescommentsotherInfo, "2, 24");
@@ -234,7 +264,7 @@ public class clog3 extends JFrame {
 		contentPane.add(textField_8, "4, 24, 3, 2, fill, default");
 		textField_8.setColumns(10);
 
-		lblVersionNumber = new JLabel("Version:");
+		lblVersionNumber = new JLabel("Version: ");
 		lblVersionNumber.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblVersionNumber, "2, 26, right, default");
 
@@ -242,16 +272,44 @@ public class clog3 extends JFrame {
 		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		contentPane.add(textField_9, "4, 26, 3, 2, fill, default");
 		textField_9.setColumns(10);
-
-		btnSaveChangeLog = new JButton("Save Change Log");
-		btnSaveChangeLog.setForeground(Color.RED);
-		btnSaveChangeLog.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		contentPane.add(btnSaveChangeLog, "2, 28");
+				
+				lblAuthor = new JLabel("Author: ");
+				lblAuthor.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblAuthor.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				contentPane.add(lblAuthor, "2, 28, right, default");
+				
+				textField_10 = new JTextField();
+				contentPane.add(textField_10, "4, 28, 3, 2, fill, default");
+				textField_10.setColumns(10);
 		
-		btnNewButton = new JButton("View Logs");
-		btnNewButton.setForeground(Color.RED);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		contentPane.add(btnNewButton, "4, 28, 3, 1");
+				btnSaveChangeLog = new JButton("Save Change Log");
+				btnSaveChangeLog.setForeground(Color.RED);
+				btnSaveChangeLog.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				contentPane.add(btnSaveChangeLog, "2, 30");
+				
+				btnNewButton = new JButton("View Logs");
+				btnNewButton.setForeground(Color.RED);
+				btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+				contentPane.add(btnNewButton, "4, 30, 3, 1");
+				
+				
+				
+				
+				
+
+				btnNewButton.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent event) {
+
+try {
+	new clogviewer().setVisible(true);
+} catch (FileNotFoundException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} 				
+					}
+
+				});
 
 		btnSaveChangeLog.addActionListener(new ActionListener() {
 
@@ -261,7 +319,7 @@ public class clog3 extends JFrame {
 					// File file = new File
 					// ("C:\\Users\\zzislin\\Desktop\\Changelogs");
 
-					PrintWriter writer = new PrintWriter("\\Desktop\\Git CLs\\Logs\\" + "clog"
+					PrintWriter writer = new PrintWriter("*input file path here*" + "clog"
 							+ textField.getText() + textField_1.getText() + textField_9.getText() + ".txt", "UTF-8");
 					writer.println("Version: " + textField_9.getText());
 					writer.println("Start Date: " + textField.getText());
@@ -279,6 +337,7 @@ public class clog3 extends JFrame {
 					writer.println("Issues/Problems: " + textField_6.getText());
 					writer.println("Outcome/Results: " + textField_7.getText());
 					writer.println("Notes/Comments/Other Info: " + textField_8.getText());
+					writer.println("Author of Log: " + textField_10.getText());
 					writer.close();
 
 					textField.setText("");
@@ -291,28 +350,13 @@ public class clog3 extends JFrame {
 					textField_7.setText("");
 					textField_8.setText("");
 					textField_9.setText("");
+					textField_10.setText("");
 					
 					version++;
 
 				} catch (IOException e) {
 					// do something
 				}
-			}
-
-		});
-		
-		
-
-		btnNewButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent event) {
-
-try {
-	new clogviewer().setVisible(true);
-} catch (FileNotFoundException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} 				
 			}
 
 		});
