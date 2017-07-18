@@ -21,6 +21,9 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javax.swing.JComboBox;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 
 
 public class clogviewer extends JFrame {
@@ -37,14 +40,15 @@ public class clogviewer extends JFrame {
 				try {
 					clogviewer frame = new clogviewer();
 					frame.setVisible(true);
+					frame.setTitle("Changelog Viewer");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	File wut = new File("\\Desktop\\Git CLs\\Logs\\");
-	File[] files = wut.listFiles();
+	File wut = new File("\\\\svr-it\\Store\\IT Intern\\Zachary Zislin\\Changelog\\Logs\\\\");
+	final File[] files = wut.listFiles();
 	int n = 0;
 	String contents = new Scanner(files[n]).useDelimiter("\\Z").next(); 
 	/**
@@ -68,18 +72,16 @@ public class clogviewer extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton = new JButton("Prev. Log");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(btnNewButton, BorderLayout.WEST);
 		
 		JButton btnNextLog = new JButton("Next Log ");
-		btnNextLog.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		btnNextLog.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(btnNextLog, BorderLayout.EAST);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(btnExit, BorderLayout.SOUTH);
-		
-		JLabel lblChangeLogViewer = new JLabel("Change Log Viewer");
-		lblChangeLogViewer.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblChangeLogViewer, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -91,6 +93,7 @@ public class clogviewer extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JEditorPane dtrpnTest = new JEditorPane();
+		dtrpnTest.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		dtrpnTest.setText(contents);
 		GridBagConstraints gbc_dtrpnTest = new GridBagConstraints();
 		gbc_dtrpnTest.gridheight = 4;
@@ -100,6 +103,14 @@ public class clogviewer extends JFrame {
 		gbc_dtrpnTest.gridy = 0;
 		panel.add(dtrpnTest, gbc_dtrpnTest);
 		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(3);
+		contentPane.add(comboBox, BorderLayout.NORTH);
+		comboBox.addItem("Author");
+		comboBox.addItem("Date");
+		comboBox.addItem("Version"); 
+		
+	
 		
 		btnNextLog.addActionListener(new ActionListener() {
 
