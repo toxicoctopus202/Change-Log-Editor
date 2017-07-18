@@ -315,11 +315,10 @@ public class clog3 extends JFrame {
 			public void actionPerformed(ActionEvent event) {
 
 				try {
-					// File file = new File
-					// ("C:\\Users\\zzislin\\Desktop\\Changelogs");
+					
 
 					PrintWriter writer = new PrintWriter(
-							"\\\\svr-it\\Store\\IT Intern\\Zachary Zislin\\Changelog\\Logs\\" + "clog" + "-"
+							"*input filepath*" + "clog" + "-"
 									+ textField.getText() + "-" + textField_9.getText() + "-" + textField_10.getText()
 									+ ".txt",
 							"UTF-8");
