@@ -47,7 +47,7 @@ public class clogviewer extends JFrame {
 			}
 		});
 	}
-	File wut = new File("\\\\svr-it\\Store\\IT Intern\\Zachary Zislin\\Changelog\\Logs\\\\");
+	File wut = new File("*input filepath*");
 	final File[] files = wut.listFiles();
 	int n = 0;
 	String contents = new Scanner(files[n]).useDelimiter("\\Z").next(); 
@@ -56,9 +56,7 @@ public class clogviewer extends JFrame {
 	 * @throws FileNotFoundException 
 	 */
 	public clogviewer() throws FileNotFoundException {
-		/*BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\zzislin\\Desktop\\Changelogs"));
-		Path p =  Paths.get("C:\\Users\\zzislin\\Desktop\\Changelogs");
-		String[] logs = new  String[p.getNameCount()];*/
+		
 		
 		
 
