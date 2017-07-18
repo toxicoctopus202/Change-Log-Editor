@@ -1,10 +1,10 @@
 import java.awt.BorderLayout;
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -12,15 +12,19 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.Action;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.io.File;
@@ -42,18 +46,15 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import java.awt.Color;
-
+import java.awt.Dimension;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-
-
+import javax.swing.JTextArea;
 
 public class clog3 extends JFrame {
-	
-	
-	
+
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -66,7 +67,6 @@ public class clog3 extends JFrame {
 	private JLabel lblServernetworkDevice;
 	private JTextField textField_3;
 	private JLabel lblProcessOfChanges;
-	private JTextField textField_4;
 	private JLabel lblNeedreasonsForChange;
 	private JTextField textField_5;
 	private JLabel lblIssuesproblems;
@@ -85,6 +85,10 @@ public class clog3 extends JFrame {
 	private JLabel lblVersionNumber;
 	private JTextField textField_9;
 	private JButton btnNewButton;
+	private JLabel lblAuthor;
+	private JTextField textField_10;
+	private JTextArea textArea;
+	private JScrollPane scrollPane;
 
 	public static void main(String[] args) {
 
@@ -93,6 +97,7 @@ public class clog3 extends JFrame {
 				try {
 					clog3 frame = new clog3();
 					frame.setVisible(true);
+					frame.setTitle("Changelog Creator");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -108,23 +113,49 @@ public class clog3 extends JFrame {
 		version = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 793);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
 		setContentPane(contentPane);
-		contentPane.setLayout(new FormLayout(
-				new ColumnSpec[] { FormSpecs.RELATED_GAP_COLSPEC, FormSpecs.DEFAULT_COLSPEC,
-						FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("default:grow"), FormSpecs.RELATED_GAP_COLSPEC,
-						ColumnSpec.decode("default:grow"), },
-				new RowSpec[] { FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, }));
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),},
+			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 
 		JLabel lblNewLabel = new JLabel("CHANGE LOG EDITOR ");
 		lblNewLabel.setForeground(Color.RED);
@@ -134,7 +165,7 @@ public class clog3 extends JFrame {
 		label = new JLabel("");
 		contentPane.add(label, "6, 4");
 
-		JLabel lblStartDate = new JLabel("Start Date:");
+		JLabel lblStartDate = new JLabel("Start Date: ");
 		lblStartDate.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblStartDate, "2, 6, right, default");
 
@@ -164,7 +195,7 @@ public class clog3 extends JFrame {
 		rdbtnNo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(rdbtnNo, "6, 10");
 
-		lblBudgetImplications = new JLabel("Budget Implication(s):");
+		lblBudgetImplications = new JLabel("Budget Implication(s): ");
 		lblBudgetImplications.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblBudgetImplications.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblBudgetImplications, "2, 12");
@@ -189,10 +220,31 @@ public class clog3 extends JFrame {
 		lblProcessOfChanges.setHorizontalAlignment(SwingConstants.TRAILING);
 		contentPane.add(lblProcessOfChanges, "2, 16");
 
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		contentPane.add(textField_4, "4, 16, 3, 2, fill, default");
-		textField_4.setColumns(10);
+		//textArea.setEditable(false);
+		//scroll.setBounds(10,11,455,249);
+		//contentPane.add(textArea, "4, 16, 3, 3, fill, fill");
+		//Border border = BorderFactory.createLineBorder(Color.GRAY);
+		//textArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		//textArea.setLineWrap(true);
+		//textArea.setWrapStyleWord(true);
+		
+		scrollPane = new JScrollPane();
+		contentPane.add(scrollPane, "4, 16, 3, 1, fill, fill");
+		JTextArea textArea_1 = new JTextArea(16, 58);
+		textArea_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		scrollPane.setViewportView(textArea_1);
+
+		//JScrollPane scroll = new JScrollPane(textArea);
+		//scroll.getVerticalScrollBar().setPreferredSize(new Dimension(10, 0));
+		//scroll.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		//contentPane.add(scroll);
+		////contentPane.add(textArea);
+	
+
+		//scroll.setPreferredSize(getMinimumSize());
+		//textArea.add(scroll);
+		// textArea.setEditable(false);
+		// getContentPane().add(scroll);
 
 		lblNeedreasonsForChange = new JLabel("Need/Reason(s) For Change: ");
 		lblNeedreasonsForChange.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -201,7 +253,7 @@ public class clog3 extends JFrame {
 
 		textField_5 = new JTextField();
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		contentPane.add(textField_5, "4, 18, 3, 2, fill, default");
+		contentPane.add(textField_5, "4, 17, 3, 2, fill, default");
 		textField_5.setColumns(10);
 
 		lblIssuesproblems = new JLabel("Issues/Problems: ");
@@ -211,7 +263,7 @@ public class clog3 extends JFrame {
 
 		textField_6 = new JTextField();
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		contentPane.add(textField_6, "4, 20, 3, 2, fill, default");
+		contentPane.add(textField_6, "4, 19, 3, 2, fill, default");
 		textField_6.setColumns(10);
 
 		lblOutcomeresults = new JLabel("Outcome/Results: ");
@@ -221,48 +273,55 @@ public class clog3 extends JFrame {
 
 		textField_7 = new JTextField();
 		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		contentPane.add(textField_7, "4, 22, 3, 2, fill, default");
+		contentPane.add(textField_7, "4, 21, 3, 2, fill, default");
 		textField_7.setColumns(10);
 
-		lblNotescommentsotherInfo = new JLabel("Notes/Comments/Other Info:");
+		lblNotescommentsotherInfo = new JLabel("Notes: ");
 		lblNotescommentsotherInfo.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNotescommentsotherInfo.setHorizontalAlignment(SwingConstants.RIGHT);
 		contentPane.add(lblNotescommentsotherInfo, "2, 24");
 
 		textField_8 = new JTextField();
 		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		contentPane.add(textField_8, "4, 24, 3, 2, fill, default");
+		contentPane.add(textField_8, "4, 23, 3, 2, fill, default");
 		textField_8.setColumns(10);
-
-		lblVersionNumber = new JLabel("Version:");
-		lblVersionNumber.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		contentPane.add(lblVersionNumber, "2, 26, right, default");
 
 		textField_9 = new JTextField();
 		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		contentPane.add(textField_9, "4, 26, 3, 2, fill, default");
+		contentPane.add(textField_9, "4, 25, 3, 2, fill, default");
 		textField_9.setColumns(10);
+
+		lblVersionNumber = new JLabel("Version: ");
+		lblVersionNumber.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		contentPane.add(lblVersionNumber, "2, 26, right, default");
+
+		lblAuthor = new JLabel("Author: ");
+		lblAuthor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAuthor.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		contentPane.add(lblAuthor, "2, 28, right, default");
+
+		textField_10 = new JTextField();
+		textField_10.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		contentPane.add(textField_10, "4, 27, 3, 3, fill, default");
+		textField_10.setColumns(10);
 
 		btnSaveChangeLog = new JButton("Save Change Log");
 		btnSaveChangeLog.setForeground(Color.RED);
 		btnSaveChangeLog.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		contentPane.add(btnSaveChangeLog, "2, 28");
-		
-		btnNewButton = new JButton("View Logs");
-		btnNewButton.setForeground(Color.RED);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		contentPane.add(btnNewButton, "4, 28, 3, 1");
+		contentPane.add(btnSaveChangeLog, "2, 30");
 
 		btnSaveChangeLog.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent event) {
 
 				try {
-					// File file = new File
-					// ("C:\\Users\\zzislin\\Desktop\\Changelogs");
+					
 
-					PrintWriter writer = new PrintWriter("\\Desktop\\Git CLs\\Logs\\" + "clog"
-							+ textField.getText() + textField_1.getText() + textField_9.getText() + ".txt", "UTF-8");
+					PrintWriter writer = new PrintWriter(
+							"*input filepath*" + "clog" + "-"
+									+ textField.getText() + "-" + textField_9.getText() + "-" + textField_10.getText()
+									+ ".txt",
+							"UTF-8");
 					writer.println("Version: " + textField_9.getText());
 					writer.println("Start Date: " + textField.getText());
 					writer.println("Start time: " + textField_1.getText());
@@ -274,24 +333,26 @@ public class clog3 extends JFrame {
 					}
 					writer.println("Budget Implecation(S): " + textField_2.getText());
 					writer.println("Server/Network Device: " + textField_3.getText());
-					writer.println("Process Of Changes Made: " + textField_4.getText());
+					writer.println("Process Of Changes Made: " + textArea_1.getText());
 					writer.println("Need(s)/Reason(s) for Change: " + textField_5.getText());
 					writer.println("Issues/Problems: " + textField_6.getText());
 					writer.println("Outcome/Results: " + textField_7.getText());
 					writer.println("Notes/Comments/Other Info: " + textField_8.getText());
+					writer.println("Author of Log: " + textField_10.getText());
 					writer.close();
 
 					textField.setText("");
 					textField_1.setText("");
 					textField_2.setText("");
 					textField_3.setText("");
-					textField_4.setText("");
+					textArea_1.setText("");
 					textField_5.setText("");
 					textField_6.setText("");
 					textField_7.setText("");
 					textField_8.setText("");
 					textField_9.setText("");
-					
+					textField_10.setText("");
+
 					version++;
 
 				} catch (IOException e) {
@@ -300,27 +361,25 @@ public class clog3 extends JFrame {
 			}
 
 		});
-		
-		
+
+		btnNewButton = new JButton("View Logs");
+		btnNewButton.setForeground(Color.RED);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		contentPane.add(btnNewButton, "4, 30, 3, 1");
 
 		btnNewButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent event) {
 
-try {
-	new clogviewer().setVisible(true);
-} catch (FileNotFoundException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} 				
+				try {
+					new clogviewer().setVisible(true);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		});
-		
-	
-		
-		
-		
-		
+
 	}
 }
